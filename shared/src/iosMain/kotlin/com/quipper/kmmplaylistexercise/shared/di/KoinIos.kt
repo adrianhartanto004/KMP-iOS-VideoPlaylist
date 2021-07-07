@@ -21,7 +21,7 @@ fun startKoin(): KoinApplication = initKoin(
 ) {}
 
 private val iosDomainModule = module {
-    factory { GetVideoListIos(get()) }
+    factory { GetVideoListIos() }
 }
 
 actual val platformModule = module {
