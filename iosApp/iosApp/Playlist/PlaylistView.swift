@@ -9,13 +9,38 @@
 import SwiftUI
 
 struct PlaylistView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+  @ObservedObject var viewModel: PlaylistViewModel = PlaylistViewModel()
+
+  var body: some View {
+    ScrollView {
+      playlist()
     }
+    .navigationBarTitle("Playlist")
+  }
+
+  private func playlist() -> AnyView {
+    switch viewModel.status {
+    case .Loading :
+      return AnyView(Text("loading").multilineTextAlignment(.center))
+    case .Success :
+      return AnyView(
+        ForEach(0...8, id:\.self) { num in
+          NavigationLink (
+            destination: Detail()
+          ) {
+            CardPlaylist()
+          }
+          .buttonStyle(PlainButtonStyle())
+        }
+      )
+    case .Error :
+      return AnyView(Text("error").multilineTextAlignment(.center))
+    }
+  }
 }
 
 struct PlaylistView_Previews: PreviewProvider {
-    static var previews: some View {
-        PlaylistView()
-    }
+  static var previews: some View {
+    PlaylistView()
+  }
 }
