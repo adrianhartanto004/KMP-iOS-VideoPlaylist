@@ -3,7 +3,7 @@ CREATE TABLE Video(
     description TEXT NOT NULL,
     videoUrl TEXT NOT NULL,
     author TEXT NOT NULL,
-    thumbnailUrl INTEGER NOT NULL,
+    thumbnailUrl TEXT NOT NULL,
     title TEXT NOT NULL
 );
 
@@ -11,17 +11,9 @@ getAll:
 SELECT *
 FROM Video;
 
-insertRecipe:
+insertOrReplaceVideo:
 INSERT OR REPLACE
-INTO Video (
-    id,
-    description,
-    videoUrl,
-    author,
-    thumbnailUrl,
-    title
-) VALUES (?, ?, ?, ?, ?, ?);
-
+INTO Video VALUES ?;
 
 deleteAll:
 DELETE FROM Video;

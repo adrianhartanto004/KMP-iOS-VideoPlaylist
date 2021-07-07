@@ -1,7 +1,7 @@
 package com.quipper.kmmplaylistexercise.shared.domain.usecase
 
-import com.quipper.kmmplaylistexercise.shared.data.network.model.videoplaylist.VideoListInfo
+import com.quipper.kmmplaylistexercise.shared.domain.model.VideoDomain
 
 interface GetVideoListUseCase {
-    suspend fun execute(): VideoListInfo
+    suspend fun execute(): List<VideoDomain>
 }

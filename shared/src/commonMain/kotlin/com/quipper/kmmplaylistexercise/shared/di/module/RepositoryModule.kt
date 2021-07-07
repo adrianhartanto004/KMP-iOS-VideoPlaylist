@@ -10,13 +10,14 @@ val repositoryModule = module {
 
     fun provideExerciseApi(httpClient: KtorClientFactory): ExerciseApi = ExerciseApi(httpClient)
 
-    fun provideRepository(
-        exerciseApi: ExerciseApi
-    ): VideoPlaylistRepository {
-        return VideoPlaylistRepositoryImpl(exerciseApi)
-    }
+//    fun provideRepository(
+//        exerciseApi: ExerciseApi
+//    ): VideoPlaylistRepository {
+//        return VideoPlaylistRepositoryImpl(exerciseApi)
+//    }
 
     single { provideExerciseApi(get()) }
-    single { provideRepository(get()) }
+//    single { provideRepository(get()) }
+    factory<VideoPlaylistRepository> { VideoPlaylistRepositoryImpl(get(), get()) }
 
 }
