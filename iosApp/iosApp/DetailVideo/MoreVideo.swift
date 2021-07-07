@@ -45,9 +45,3 @@ struct MoreVideo: View {
     }
   }
 }
-
-struct MoreVideo_Previews: PreviewProvider {
-  static var previews: some View {
-    MoreVideo(status: .constant(Status.Success))
-  }
-}

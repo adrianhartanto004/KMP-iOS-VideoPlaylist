@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import shared
 
 enum Status {
   case Loading
-  case Success
-  case Error
+  case Success([VideoDomain])
+  case Error(String)
 }

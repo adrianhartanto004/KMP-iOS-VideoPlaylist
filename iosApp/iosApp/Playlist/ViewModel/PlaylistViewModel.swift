@@ -10,11 +10,25 @@ import Foundation
 import shared
 
 class PlaylistViewModel: ObservableObject {
-  @Published var status: Status = Status.Success
-
-  //Todo create variable
-
-  func getPlaylist() {
-    //Get playlist from the shared
+  let repository: VideoPlaylistRepository
+  @Published var status: StatusPlaylist = StatusPlaylist.Loading
+  init(repository: VideoPlaylistRepository) {
+    self.repository = repository
   }
+  func getPlaylist() {
+    repository.getVideos(completionHandler: { videos, error in
+      if let videos = videos {
+        print(videos)
+        self.status = .Success(videos)
+      } else {
+        self.status = .Error
+      }
+    })
+  }
+}
+
+enum StatusPlaylist {
+  case Loading
+  case Success([VideoDomain])
+  case Error
 }

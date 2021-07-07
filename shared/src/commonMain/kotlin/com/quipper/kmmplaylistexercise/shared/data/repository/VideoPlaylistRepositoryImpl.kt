@@ -7,11 +7,12 @@ import com.quipper.kmmplaylistexercise.shared.data.network.model.videoplaylist.t
 import com.quipper.kmmplaylistexercise.shared.domain.model.VideoDomain
 import com.quipper.kmmplaylistexercise.shared.domain.repository.VideoPlaylistRepository
 import io.ktor.utils.io.errors.*
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class VideoPlaylistRepositoryImpl(
-    private val exerciseApi: ExerciseApi,
-    private val videoQueries: VideoQueries
-) : VideoPlaylistRepository {
+class VideoPlaylistRepositoryImpl : VideoPlaylistRepository, KoinComponent {
+    private val exerciseApi: ExerciseApi by inject()
+    private val videoQueries: VideoQueries by inject()
     override suspend fun getVideos(): List<VideoDomain> {
         var videoList = listOf<VideoDomain>()
         try {
@@ -25,6 +26,7 @@ class VideoPlaylistRepositoryImpl(
                 }
             videoList = videos.map { it.toDomainModel() }
         } catch (throwable: Throwable) {
+            print(throwable.message)
             if (throwable is IOException) {
                 videoList = videoQueries.getAll().executeAsList().map { it.toDomainModel() }
             }

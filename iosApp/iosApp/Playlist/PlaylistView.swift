@@ -9,20 +9,23 @@
 import SwiftUI
 
 struct PlaylistView: View {
-  @ObservedObject var viewModel: PlaylistViewModel = PlaylistViewModel()
+  @ObservedObject private(set) var viewModel: PlaylistViewModel
 
   var body: some View {
     ScrollView {
       playlist()
     }
     .navigationBarTitle("Playlist")
+    .onAppear {
+      viewModel.getPlaylist()
+    }
   }
 
   private func playlist() -> AnyView {
     switch viewModel.status {
     case .Loading :
       return AnyView(Text("loading").multilineTextAlignment(.center))
-    case .Success :
+    case .Success(_) :
       return AnyView(
         ForEach(0...8, id:\.self) { num in
           NavigationLink (
@@ -39,8 +42,3 @@ struct PlaylistView: View {
   }
 }
 
-struct PlaylistView_Previews: PreviewProvider {
-  static var previews: some View {
-    PlaylistView()
-  }
-}
