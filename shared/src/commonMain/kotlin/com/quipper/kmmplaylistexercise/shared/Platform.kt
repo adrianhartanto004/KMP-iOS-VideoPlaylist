@@ -1,4 +1,4 @@
-package com.quipper.kmmplaylistexercise
+package com.quipper.kmmplaylistexercise.shared
 
 expect class Platform() {
     val platform: String
