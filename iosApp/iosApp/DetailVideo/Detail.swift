@@ -11,7 +11,7 @@ import AVKit
 
 struct Detail: View {
   @ObservedObject var viewModel: DetailViewModel = DetailViewModel()
-  @State var player = AVPlayer(url: URL(string: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")!)
+  @State var player = AVPlayer(url: URL(string: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4")!)
 
   var body: some View {
     VStack {
