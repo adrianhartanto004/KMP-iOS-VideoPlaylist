@@ -1,0 +1,27 @@
+CREATE TABLE Video(
+    id INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT,
+    description TEXT NOT NULL,
+    videoUrl TEXT NOT NULL,
+    author TEXT NOT NULL,
+    thumbnailUrl INTEGER NOT NULL,
+    title TEXT NOT NULL
+);
+
+getAll:
+SELECT *
+FROM Video;
+
+insertRecipe:
+INSERT OR REPLACE
+INTO Video (
+    id,
+    description,
+    videoUrl,
+    author,
+    thumbnailUrl,
+    title
+) VALUES (?, ?, ?, ?, ?, ?);
+
+
+deleteAll:
+DELETE FROM Video;
