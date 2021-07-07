@@ -7,5 +7,4 @@ pluginManagement {
 }
 
 rootProject.name = "kmm-playlist-exercise"
-include(":androidApp")
 include(":shared")
