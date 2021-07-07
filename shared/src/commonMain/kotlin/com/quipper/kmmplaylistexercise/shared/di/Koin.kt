@@ -1,5 +1,6 @@
 package com.quipper.kmmplaylistexercise.shared.di
 
+import com.quipper.kmmplaylistexercise.shared.di.module.domainModule
 import com.quipper.kmmplaylistexercise.shared.di.module.networkModule
 import com.quipper.kmmplaylistexercise.shared.di.module.repositoryModule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -22,6 +23,7 @@ private fun getSharedModules(): Array<Module> {
     return arrayOf(
 //        databaseModule,
         repositoryModule,
-        networkModule
+        networkModule,
+        domainModule
     )
 }
