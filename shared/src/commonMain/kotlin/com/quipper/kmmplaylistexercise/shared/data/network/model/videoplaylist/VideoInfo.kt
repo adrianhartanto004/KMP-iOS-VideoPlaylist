@@ -1,5 +1,7 @@
 package com.quipper.kmmplaylistexercise.shared.data.network.model.videoplaylist
 
+import com.quipper.kmmplaylistexercise.shared.cache.Video
+import com.quipper.kmmplaylistexercise.shared.domain.model.VideoDomain
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -14,3 +16,13 @@ data class VideoInfo(
     val thumbnailUrl: String,
     val title: String
 )
+
+fun VideoInfo.toDatabaseEntity() =
+    Video(id = id.toLong(), description, videoUrl, author, thumbnailUrl, title)
+
+fun VideoInfo.toDomainModel() =
+    VideoDomain(id, description, videoUrl, author, thumbnailUrl, title)
+
+fun Video.toDomainModel() =
+    VideoDomain(id.toInt(), description, videoUrl, author, thumbnailUrl, title)
+

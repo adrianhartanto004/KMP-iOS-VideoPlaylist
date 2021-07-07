@@ -1,5 +1,6 @@
 package com.quipper.kmmplaylistexercise.shared.di
 
+import com.quipper.kmmplaylistexercise.shared.di.module.databaseModule
 import com.quipper.kmmplaylistexercise.shared.di.module.domainModule
 import com.quipper.kmmplaylistexercise.shared.di.module.repositoryModule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -20,7 +21,7 @@ fun initKoin(appModule: Array<Module>, appDeclaration: KoinAppDeclaration) = sta
 @ExperimentalCoroutinesApi
 private fun getSharedModules(): Array<Module> {
     return arrayOf(
-//        databaseModule,
+        databaseModule,
         repositoryModule,
         domainModule
     )

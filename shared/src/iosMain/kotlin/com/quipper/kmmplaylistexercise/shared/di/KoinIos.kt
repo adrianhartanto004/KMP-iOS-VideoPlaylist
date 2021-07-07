@@ -1,6 +1,8 @@
 package com.quipper.kmmplaylistexercise.shared.di
 
 import com.quipper.kmmplaylistexercise.shared.data.domain.GetVideoListIos
+import com.quipper.kmmplaylistexercise.shared.data.persistence.DatabaseFactory
+import com.quipper.kmmplaylistexercise.shared.data.preferences.KmmPreferenceFactory
 import com.quipper.kmmplaylistexercise.shared.data.service.KtorClientFactory
 import com.quipper.kmmplaylistexercise.shared.data.service.KtorClientFactoryImpl
 import kotlinx.cinterop.ObjCClass
@@ -23,6 +25,8 @@ private val iosDomainModule = module {
 }
 
 actual val platformModule = module {
+    single { DatabaseFactory().createDatabase() }
+    single { KmmPreferenceFactory().createKmmPreference("kmmplaylist.ios.preferences") }
     factory<KtorClientFactory> { KtorClientFactoryImpl() }
 }
 

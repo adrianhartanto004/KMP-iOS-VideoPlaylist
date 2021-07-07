@@ -1,7 +1,7 @@
 package com.quipper.kmmplaylistexercise.shared.domain.repository
 
-import com.quipper.kmmplaylistexercise.shared.data.network.model.videoplaylist.VideoListInfo
+import com.quipper.kmmplaylistexercise.shared.domain.model.VideoDomain
 
 interface VideoPlaylistRepository {
-    suspend fun getVideos(): VideoListInfo
+    suspend fun getVideos(): List<VideoDomain>
 }
