@@ -3,9 +3,6 @@ import shared
 
 @main
 struct iOSApp: App {
-
-  let repository = VideoPlaylistRepositoryImpl()
-
   init(){
     KoinIosKt.startKoin()
   }
@@ -13,7 +10,7 @@ struct iOSApp: App {
   var body: some Scene {
     WindowGroup {
       NavigationView {
-        PlaylistView(viewModel: .init(repository: repository))
+        PlaylistView(viewModel: .init(useCase: GetVideoListIos()))
       }
     }
   }
