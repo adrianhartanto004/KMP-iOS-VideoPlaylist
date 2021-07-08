@@ -10,9 +10,7 @@ struct LoginView: View {
   }
 
   var body: some View {
-    ScrollView {
       loginViews()
-    }
   }
 
   private func loginViews() -> AnyView {
