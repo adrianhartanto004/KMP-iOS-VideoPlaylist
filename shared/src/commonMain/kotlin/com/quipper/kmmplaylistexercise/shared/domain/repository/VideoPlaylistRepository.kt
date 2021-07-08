@@ -5,5 +5,5 @@ import com.quipper.kmmplaylistexercise.shared.domain.model.VideoDomain
 
 interface VideoPlaylistRepository {
     suspend fun getVideos(): List<VideoDomain>
-    suspend fun postLogin(email: String, password: String): LoginDomain
+    suspend fun postLogin(email: String, password: String): LoginDomain?
 }

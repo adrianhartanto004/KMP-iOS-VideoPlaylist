@@ -8,10 +8,10 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class LoginResponse(
     @SerialName("token")
-    val token: String,
+    val token: String = "",
     @SerialName("error")
-    val error: String
+    val error: String = ""
 )
 
-fun LoginResponse.toDomainModel() =
-    LoginDomain(token, error)
+//fun LoginResponse.toDomainModel() =
+//    LoginDomain(token, error)

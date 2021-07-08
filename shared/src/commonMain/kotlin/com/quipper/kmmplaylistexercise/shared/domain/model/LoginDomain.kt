@@ -1,6 +1,6 @@
 package com.quipper.kmmplaylistexercise.shared.domain.model
 
 data class LoginDomain(
-    val token: String,
-    val error: String
+    val token: String = "",
+    val error: String = ""
 )

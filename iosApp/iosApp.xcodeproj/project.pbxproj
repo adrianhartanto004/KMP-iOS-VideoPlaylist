@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
+		23BEE9A02696E13A00BC0FE0 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BEE99F2696E13A00BC0FE0 /* LoginViewModel.swift */; };
+		23BEE9A22696E30800BC0FE0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BEE9A12696E30800BC0FE0 /* LoginView.swift */; };
 		422BE73F269587D70039FF26 /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422BE73E269587D70039FF26 /* PlaylistView.swift */; };
 		422BE742269588FE0039FF26 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422BE741269588FE0039FF26 /* AsyncImage.swift */; };
 		422BE74426958B290039FF26 /* CardPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422BE74326958B290039FF26 /* CardPlaylist.swift */; };
@@ -24,6 +26,8 @@
 
 /* Begin PBXFileReference section */
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		23BEE99F2696E13A00BC0FE0 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		23BEE9A12696E30800BC0FE0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		41211E1C62F131EE44DE2702 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		422BE73E269587D70039FF26 /* PlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
 		422BE741269588FE0039FF26 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
@@ -54,6 +58,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23BEE99B2696E0F800BC0FE0 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				23BEE99E2696E12A00BC0FE0 /* View */,
+				23BEE99D2696E12100BC0FE0 /* ViewModel */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		23BEE99D2696E12100BC0FE0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				23BEE99F2696E13A00BC0FE0 /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		23BEE99E2696E12A00BC0FE0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				23BEE9A12696E30800BC0FE0 /* LoginView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		31B61E4AAC2D484390CFBA36 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +177,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				23BEE99B2696E0F800BC0FE0 /* Login */,
 				422BE74526958EDA0039FF26 /* DetailVideo */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
@@ -267,6 +297,8 @@
 				422BE7572695A39D0039FF26 /* Status.swift in Sources */,
 				422BE74726958EF30039FF26 /* DetailView.swift in Sources */,
 				422BE74426958B290039FF26 /* CardPlaylist.swift in Sources */,
+				23BEE9A22696E30800BC0FE0 /* LoginView.swift in Sources */,
+				23BEE9A02696E13A00BC0FE0 /* LoginViewModel.swift in Sources */,
 				422BE749269590D60039FF26 /* VideoInfoView.swift in Sources */,
 				422BE73F269587D70039FF26 /* PlaylistView.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
