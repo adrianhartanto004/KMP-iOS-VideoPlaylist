@@ -7,21 +7,19 @@
 //
 
 import SwiftUI
+import shared
 
 struct VideoInfo: View {
+  let video: VideoDomain
     var body: some View {
       VStack(alignment: .leading) {
-        Text("Title nya").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-        Text("")
-        Text("Author nya")
-        Text("")
-        Text("Description")
+        Text(video.title)
+          .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+        Divider()
+        Text(video.author)
+        Divider()
+        Text(video.desc)
+        Divider()
       }.padding()
-    }
-}
-
-struct VideoInfo_Previews: PreviewProvider {
-    static var previews: some View {
-        VideoInfo()
     }
 }

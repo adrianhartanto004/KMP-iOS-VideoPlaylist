@@ -7,9 +7,10 @@
 //
 
 import SwiftUI
+import shared
 
 struct MoreVideo: View {
-  @Binding var status: Status
+  let listVideo: [VideoDomain]
 
   var body: some View {
     Section(header: HStack {
@@ -19,29 +20,31 @@ struct MoreVideo: View {
     }
     .background(Color(UIColor.systemBackground))
     ) {
-      moreVideoView()
+      ForEach(0...5, id: \.self) { num in
+        ItemMoreVideo()
+      }
     }
   }
 
-  private func moreVideoView() -> AnyView {
-    switch status {
-    case .Loading :
-      return AnyView(
-        Text("Loading")
-          .multilineTextAlignment(.center)
-          .padding())
-    case .Success :
-      return AnyView(
-        ForEach(0...5, id: \.self) { num in
-          ItemMoreVideo()
-        }
-      )
-    case .Error :
-      return AnyView(
-        Text("Error")
-          .multilineTextAlignment(.center)
-          .padding()
-      )
-    }
-  }
+//  private func moreVideoView() -> AnyView {
+//    switch status {
+//    case .Loading :
+//      return AnyView(
+//        Text("Loading")
+//          .multilineTextAlignment(.center)
+//          .padding())
+//    case .Success :
+//      return AnyView(
+//        ForEach(0...5, id: \.self) { num in
+//          ItemMoreVideo()
+//        }
+//      )
+//    case .Error :
+//      return AnyView(
+//        Text("Error")
+//          .multilineTextAlignment(.center)
+//          .padding()
+//      )
+//    }
+//  }
 }
