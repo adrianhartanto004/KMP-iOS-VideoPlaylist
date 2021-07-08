@@ -1,24 +1,19 @@
-//
-//  PlaylistView.swift
-//  iosApp
-//
-//  Created by Pras Adi on 07/07/21.
-//  Copyright © 2021 orgName. All rights reserved.
-//
-
 import SwiftUI
+import shared
 
 struct PlaylistView: View {
-  @ObservedObject private(set) var viewModel: PlaylistViewModel
+  @ObservedObject var viewModel: PlaylistViewModel
+
+  init(getVideoListUseCase: GetVideoListIos) {
+    viewModel = PlaylistViewModel(getVideoListUseCase: getVideoListUseCase)
+    viewModel.getPlaylist()
+  }
 
   var body: some View {
     ScrollView {
       playlist()
     }
     .navigationBarTitle("Playlist")
-    .onAppear {
-      viewModel.getPlaylist()
-    }
   }
 
   private func playlist() -> AnyView {

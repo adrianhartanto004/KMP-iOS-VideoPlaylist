@@ -15,5 +15,5 @@ val repositoryModule = module {
 //    }
     single { provideExerciseApi(get()) }
 //    single { provideRepository(get()) }
-    factory<VideoPlaylistRepository> { VideoPlaylistRepositoryImpl() }
+    factory<VideoPlaylistRepository> { VideoPlaylistRepositoryImpl(get(), get()) }
 }

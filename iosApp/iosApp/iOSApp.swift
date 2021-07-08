@@ -10,7 +10,7 @@ struct iOSApp: App {
   var body: some Scene {
     WindowGroup {
       NavigationView {
-        PlaylistView(viewModel: .init(useCase: GetVideoListIos()))
+        PlaylistView(getVideoListUseCase: GetVideoListIos())
       }
     }
   }
