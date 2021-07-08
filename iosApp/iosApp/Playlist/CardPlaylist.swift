@@ -24,7 +24,7 @@ struct CardPlaylist: View {
           Spacer()
           Text(video.author).font(.caption)
         }
-        Text(video.description).font(.caption).lineLimit(3).padding([.vertical])
+        Text(video.desc).font(.caption).lineLimit(3).padding([.vertical])
       }
       .padding([.horizontal])
     }
