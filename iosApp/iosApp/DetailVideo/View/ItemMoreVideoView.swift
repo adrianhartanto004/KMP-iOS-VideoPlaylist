@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ItemMoreVideo: View {
+struct ItemMoreVideoView: View {
     var body: some View {
       HStack (alignment: .top) {
         AsyncImage(url: URL(string: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg")!,
@@ -39,6 +39,6 @@ struct ItemMoreVideo: View {
 
 struct ItemMoreVideo_Previews: PreviewProvider {
     static var previews: some View {
-        ItemMoreVideo()
+        ItemMoreVideoView()
     }
 }

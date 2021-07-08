@@ -21,8 +21,8 @@ struct DetailView: View {
         .frame(height: 300)
       ScrollView {
         LazyVStack (alignment: .leading, pinnedViews: .sectionHeaders) {
-          VideoInfo(video: video)
-          MoreVideo(listVideo: listMoreVideo)
+          VideoInfoView(video: video)
+          MoreVideoView(listVideo: listMoreVideo)
           Spacer()
         }
         .navigationBarTitle(video.title, displayMode: .inline)

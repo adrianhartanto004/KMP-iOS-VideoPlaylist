@@ -9,7 +9,7 @@
 import SwiftUI
 import shared
 
-struct MoreVideo: View {
+struct MoreVideoView: View {
   let listVideo: [VideoDomain]
 
   var body: some View {
@@ -21,7 +21,7 @@ struct MoreVideo: View {
     .background(Color(UIColor.systemBackground))
     ) {
       ForEach(0...5, id: \.self) { num in
-        ItemMoreVideo()
+        ItemMoreVideoView()
       }
     }
   }

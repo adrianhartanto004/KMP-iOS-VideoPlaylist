@@ -9,7 +9,7 @@
 import SwiftUI
 import shared
 
-struct VideoInfo: View {
+struct VideoInfoView: View {
   let video: VideoDomain
     var body: some View {
       VStack(alignment: .leading) {
