@@ -2,8 +2,10 @@ package com.quipper.kmmplaylistexercise.shared.data.repository
 
 import com.quipper.kmmplaylistexercise.shared.cache.VideoQueries
 import com.quipper.kmmplaylistexercise.shared.data.network.api.ExerciseApi
+import com.quipper.kmmplaylistexercise.shared.data.network.model.login.toDomainModel
 import com.quipper.kmmplaylistexercise.shared.data.network.model.videoplaylist.toDatabaseEntity
 import com.quipper.kmmplaylistexercise.shared.data.network.model.videoplaylist.toDomainModel
+import com.quipper.kmmplaylistexercise.shared.domain.model.LoginDomain
 import com.quipper.kmmplaylistexercise.shared.domain.model.VideoDomain
 import com.quipper.kmmplaylistexercise.shared.domain.repository.VideoPlaylistRepository
 import io.ktor.utils.io.errors.*
@@ -32,5 +34,16 @@ class VideoPlaylistRepositoryImpl(
             }
         }
         return videoList
+    }
+
+    override suspend fun postLogin(email: String, password: String): LoginDomain {
+        var loginDomain = LoginDomain("", "")
+        try {
+            val login = exerciseApi.postLogin(email, password)
+            loginDomain = login.toDomainModel()
+        } catch (throwable: Throwable) {
+            print(throwable.message)
+        }
+        return loginDomain
     }
 }
