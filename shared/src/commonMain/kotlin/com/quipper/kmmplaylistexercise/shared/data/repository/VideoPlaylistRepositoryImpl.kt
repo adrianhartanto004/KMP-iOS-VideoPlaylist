@@ -8,11 +8,11 @@ import com.quipper.kmmplaylistexercise.shared.domain.model.VideoDomain
 import com.quipper.kmmplaylistexercise.shared.domain.repository.VideoPlaylistRepository
 import io.ktor.utils.io.errors.*
 import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
-class VideoPlaylistRepositoryImpl : VideoPlaylistRepository, KoinComponent {
-    private val exerciseApi: ExerciseApi by inject()
-    private val videoQueries: VideoQueries by inject()
+class VideoPlaylistRepositoryImpl(
+    private val exerciseApi: ExerciseApi,
+    private val videoQueries: VideoQueries
+) : VideoPlaylistRepository, KoinComponent {
     override suspend fun getVideos(): List<VideoDomain> {
         var videoList = listOf<VideoDomain>()
         try {
