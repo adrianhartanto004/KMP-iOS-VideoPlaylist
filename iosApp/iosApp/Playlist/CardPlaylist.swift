@@ -7,22 +7,24 @@
 //
 
 import SwiftUI
+import shared
 
 struct CardPlaylist: View {
+  let video: VideoDomain
   var body: some View {
     VStack {
-      AsyncImage(url: URL(string: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg")!,
+      AsyncImage(url: URL(string: video.thumbnailUrl)!,
                  placeholder: { Text("Loading ...") },
                  image: {
                   Image(uiImage: $0).resizable()})
         .aspectRatio(contentMode: .fit)
       VStack(alignment: .leading) {
         HStack(alignment: .top) {
-          Text("Title")
+          Text(video.title)
           Spacer()
-          Text("Authornya").font(.caption)
+          Text(video.author).font(.caption)
         }
-        Text("Description").font(.caption).lineLimit(3).padding([.vertical])
+        Text(video.description).font(.caption).lineLimit(3).padding([.vertical])
       }
       .padding([.horizontal])
     }

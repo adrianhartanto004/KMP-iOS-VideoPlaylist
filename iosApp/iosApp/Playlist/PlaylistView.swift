@@ -25,13 +25,13 @@ struct PlaylistView: View {
     switch viewModel.status {
     case .Loading :
       return AnyView(Text("loading").multilineTextAlignment(.center))
-    case .Success(_) :
+    case .Success(let videos) :
       return AnyView(
-        ForEach(0...8, id:\.self) { num in
+        ForEach(videos, id:\.self) { video in
           NavigationLink (
             destination: Detail()
           ) {
-            CardPlaylist()
+            CardPlaylist(video: video)
           }
           .buttonStyle(PlainButtonStyle())
         }
