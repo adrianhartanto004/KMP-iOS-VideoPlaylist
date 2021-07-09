@@ -58,9 +58,8 @@ class VideoPlaylistRepositoryImpl(
     ): RegisterDomain {
         var registerDomain = RegisterDomain(false)
         try {
-            val login = exerciseApi.postRegister(email, name, password)
-            print(login.status)
-            registerDomain = if (login.status in 200..300) {
+            val register = exerciseApi.postRegister(email, name, password)
+            registerDomain = if (register.id.isNotBlank()) {
                 RegisterDomain(true)
             } else {
                 RegisterDomain(false)

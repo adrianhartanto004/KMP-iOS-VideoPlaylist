@@ -3,11 +3,11 @@ package com.quipper.kmmplaylistexercise.shared.data.network.api
 import com.quipper.kmmplaylistexercise.shared.data.network.model.login.LoginParam
 import com.quipper.kmmplaylistexercise.shared.data.network.model.login.LoginResponse
 import com.quipper.kmmplaylistexercise.shared.data.network.model.register.RegisterParam
+import com.quipper.kmmplaylistexercise.shared.data.network.model.register.RegisterResponse
 import com.quipper.kmmplaylistexercise.shared.data.network.model.videoplaylist.VideoListInfo
 import com.quipper.kmmplaylistexercise.shared.data.service.KtorClientFactory
 import io.ktor.client.request.*
 import io.ktor.http.*
-import io.ktor.http.cio.*
 import io.ktor.utils.io.core.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
@@ -28,7 +28,7 @@ class ExerciseApi(private val ktorClientFactory: KtorClientFactory) {
             }
         }
 
-    suspend fun postRegister(email: String, name: String, password: String): Response =
+    suspend fun postRegister(email: String, name: String, password: String): RegisterResponse =
         ktorClientFactory.createClient().use {
             return it.post("https://reqres.in/api/users") {
                 contentType(ContentType.Application.Json)

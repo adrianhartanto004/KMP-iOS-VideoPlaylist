@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,8 @@
 		422BE7552695A2B50039FF26 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422BE7542695A2B50039FF26 /* DetailViewModel.swift */; };
 		422BE7572695A39D0039FF26 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422BE7562695A39D0039FF26 /* Status.swift */; };
 		422BE7592695A4680039FF26 /* MoreVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422BE7582695A4680039FF26 /* MoreVideoView.swift */; };
+		427E85D326980CA500C6768D /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427E85D226980CA500C6768D /* RegisterViewModel.swift */; };
+		427E85D526980F6200C6768D /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427E85D426980F6200C6768D /* RegisterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		422BE7542695A2B50039FF26 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		422BE7562695A39D0039FF26 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		422BE7582695A4680039FF26 /* MoreVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreVideoView.swift; sourceTree = "<group>"; };
+		427E85D226980CA500C6768D /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		427E85D426980F6200C6768D /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		4EBB606237B8BC50536060E2 /* Pods_iosApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -136,6 +140,31 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		427E85CE26980C7800C6768D /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				427E85CF26980C7D00C6768D /* View */,
+				427E85D126980C8800C6768D /* ViewModel */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		427E85CF26980C7D00C6768D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				427E85D426980F6200C6768D /* RegisterView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		427E85D126980C8800C6768D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				427E85D226980CA500C6768D /* RegisterViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		42AE5F7F2696D80F0068BE28 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +206,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				427E85CE26980C7800C6768D /* Register */,
 				23BEE99B2696E0F800BC0FE0 /* Login */,
 				422BE74526958EDA0039FF26 /* DetailVideo */,
 				7555FF8C242A565B00829871 /* Info.plist */,
@@ -308,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				422BE7592695A4680039FF26 /* MoreVideoView.swift in Sources */,
+				427E85D326980CA500C6768D /* RegisterViewModel.swift in Sources */,
 				422BE752269598DB0039FF26 /* PlaylistViewModel.swift in Sources */,
 				422BE742269588FE0039FF26 /* AsyncImage.swift in Sources */,
 				422BE74D269596810039FF26 /* ItemMoreVideoView.swift in Sources */,
@@ -319,6 +350,7 @@
 				23BEE9A02696E13A00BC0FE0 /* LoginViewModel.swift in Sources */,
 				422BE749269590D60039FF26 /* VideoInfoView.swift in Sources */,
 				422BE73F269587D70039FF26 /* PlaylistView.swift in Sources */,
+				427E85D526980F6200C6768D /* RegisterView.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				422BE74F269598220039FF26 /* UIScreen.swift in Sources */,
 			);
