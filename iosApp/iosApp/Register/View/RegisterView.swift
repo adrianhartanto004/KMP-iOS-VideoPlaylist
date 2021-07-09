@@ -31,10 +31,10 @@ struct RegisterContentView : View {
 
   var errorText = ""
 
-  @State private var email = "pras"
-  @State private var name = "pras"
-  @State private var password = "pras"
-  @State private var confirmPassword = "pras"
+  @State private var email = ""
+  @State private var name = ""
+  @State private var password = ""
+  @State private var confirmPassword = ""
 
   var body: some View {
     VStack() {
