@@ -30,10 +30,11 @@ class ExerciseApi(private val ktorClientFactory: KtorClientFactory) {
 
     suspend fun postRegister(email: String, name: String, password: String): RegisterResponse =
         ktorClientFactory.createClient().use {
-            return it.post("https://reqres.in/api/users") {
+            val data = it.post<String>("https://reqres.in/api/users") {
                 contentType(ContentType.Application.Json)
                 body = RegisterParam(email, name, password)
             }
+            return Json { ignoreUnknownKeys = true }.decodeFromString(data)
         }
 
 }

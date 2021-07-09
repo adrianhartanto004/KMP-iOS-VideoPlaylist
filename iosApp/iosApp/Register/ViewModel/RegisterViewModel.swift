@@ -28,15 +28,11 @@ class RegisterViewModel : ObservableObject {
       self.showAlert = true
       self.status = .AuthError("Password and confirm password must be matched")
     } else {
-      print("Running register")
       postRegisterUseCase.execute(email: email, name: name, password: password)
         .subscribe(scope: scopeHandler, onSuccess: { registerDomain in
-          print(registerDomain)
           if registerDomain?.isSuccess ?? true {
-            print("Running true")
             self.status = .Success
           } else {
-            print("Running false")
             self.showAlert = true
             self.status = .AuthError("Register failed, please try again later")
           }
