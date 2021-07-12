@@ -97,7 +97,7 @@ kotlin {
 
 sqldelight {
     database("AppDatabase") {
-        packageName = "com.quipper.kmmplaylistexercise.shared.cache"
+        packageName = "com.quipper.kmmplaylistexercise.shared.persistence"
     }
 }
 

@@ -1,6 +1,6 @@
 package com.quipper.kmmplaylistexercise.shared.data.repository
 
-import com.quipper.kmmplaylistexercise.shared.cache.VideoQueries
+import com.quipper.kmmplaylistexercise.shared.persistence.VideoQueries
 import com.quipper.kmmplaylistexercise.shared.data.network.api.ExerciseApi
 import com.quipper.kmmplaylistexercise.shared.data.network.model.videoplaylist.toDatabaseEntity
 import com.quipper.kmmplaylistexercise.shared.data.network.model.videoplaylist.toDomainModel
