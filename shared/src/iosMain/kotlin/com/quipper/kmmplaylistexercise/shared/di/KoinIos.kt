@@ -1,9 +1,6 @@
 package com.quipper.kmmplaylistexercise.shared.di
 
-import com.quipper.kmmplaylistexercise.shared.data.domain.GetUserTokenIos
-import com.quipper.kmmplaylistexercise.shared.data.domain.GetVideoListIos
-import com.quipper.kmmplaylistexercise.shared.data.domain.PostLoginIos
-import com.quipper.kmmplaylistexercise.shared.data.domain.PostRegisterIos
+import com.quipper.kmmplaylistexercise.shared.data.domain.*
 import com.quipper.kmmplaylistexercise.shared.data.persistence.DatabaseFactory
 import com.quipper.kmmplaylistexercise.shared.data.preferences.KmmPreferenceFactory
 import com.quipper.kmmplaylistexercise.shared.data.service.KtorClientFactory
@@ -28,6 +25,7 @@ private val iosDomainModule = module {
     factory { PostLoginIos() }
     factory { PostRegisterIos() }
     factory { GetUserTokenIos() }
+    factory { DeleteUserTokenIos() }
 }
 
 actual val platformModule = module {

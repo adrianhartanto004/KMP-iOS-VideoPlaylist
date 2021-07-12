@@ -22,7 +22,7 @@ struct SplashScreenView: View {
       if isEmpty {
         return AnyView(LoginView(postLoginIos: .init(), isFromRegisterPage: false))
       } else {
-        return AnyView(PlaylistView(getVideoListUseCase: .init()))
+        return AnyView(PlaylistView(getVideoListUseCase: .init(), deleteUserTokenUseCase: .init()))
       }
     }
   }

@@ -4,8 +4,8 @@ import shared
 struct PlaylistView: View {
   @ObservedObject var viewModel: PlaylistViewModel
 
-  init(getVideoListUseCase: GetVideoListIos) {
-    viewModel = PlaylistViewModel(getVideoListUseCase: getVideoListUseCase)
+  init(getVideoListUseCase: GetVideoListIos, deleteUserTokenUseCase: DeleteUserTokenIos) {
+    viewModel = PlaylistViewModel(getVideoListUseCase: getVideoListUseCase, deleteUserTokenUseCase: deleteUserTokenUseCase)
     viewModel.getPlaylist()
   }
 
@@ -13,7 +13,6 @@ struct PlaylistView: View {
     ScrollView {
       playlist()
     }
-    .navigationBarTitle("Playlist")
   }
 
   private func playlist() -> AnyView {
@@ -30,9 +29,17 @@ struct PlaylistView: View {
           }
           .buttonStyle(PlainButtonStyle())
         }
+        .navigationBarTitle("Playlist")
+        .navigationBarItems(trailing: Button("Logout") {
+          viewModel.clearUserToken()
+        })
       )
     case .Error :
       return AnyView(Text("error").multilineTextAlignment(.center))
+    case .Logout :
+      return AnyView(
+        LoginView(postLoginIos: .init(), isFromRegisterPage: false)
+      )
     }
   }
 }

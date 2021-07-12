@@ -58,4 +58,8 @@ class VideoPlaylistRepositoryImpl(
     override suspend fun getToken(): String {
         return kmmPreferences.getString("LOGIN_TOKEN_KEY", "")
     }
+
+    override suspend fun clearToken() {
+        kmmPreferences.clear()
+    }
 }

@@ -21,7 +21,7 @@ struct LoginView: View {
     case .Ready, .Loading, .Error :
       return AnyView(LoginContentView(viewModel: viewModel))
     case .Success :
-      return AnyView(PlaylistView(getVideoListUseCase: .init()))
+      return AnyView(PlaylistView(getVideoListUseCase: .init(), deleteUserTokenUseCase: .init()))
     case .AuthError(let error):
       return AnyView(LoginContentView(viewModel: viewModel, errorText: error))
     }
