@@ -1,6 +1,7 @@
 package com.quipper.kmmplaylistexercise.shared.di.module
 
 import com.quipper.kmmplaylistexercise.shared.data.network.api.ExerciseApi
+import com.quipper.kmmplaylistexercise.shared.data.network.api.ExerciseApiImpl
 import com.quipper.kmmplaylistexercise.shared.data.repository.LoginRepositoryImpl
 import com.quipper.kmmplaylistexercise.shared.data.repository.RegisterRepositoryImpl
 import com.quipper.kmmplaylistexercise.shared.data.repository.UserRepositoryImpl
@@ -13,8 +14,9 @@ import com.quipper.kmmplaylistexercise.shared.domain.repository.VideoPlaylistRep
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    fun provideExerciseApi(httpClient: KtorClientFactory): ExerciseApi = ExerciseApi(httpClient)
-    single { provideExerciseApi(get()) }
+    fun provideExerciseApi(httpClient: KtorClientFactory): ExerciseApiImpl =
+        ExerciseApiImpl(httpClient)
+    single<ExerciseApi> { provideExerciseApi(get()) }
     factory<VideoPlaylistRepository> { VideoPlaylistRepositoryImpl(get(), get()) }
     factory<LoginRepository> { LoginRepositoryImpl(get(), get()) }
     factory<RegisterRepository> { RegisterRepositoryImpl(get()) }

@@ -1,11 +1,11 @@
 package com.quipper.kmmplaylistexercise.shared.data.repository
 
-import com.quipper.kmmplaylistexercise.shared.persistence.VideoQueries
 import com.quipper.kmmplaylistexercise.shared.data.network.api.ExerciseApi
 import com.quipper.kmmplaylistexercise.shared.data.network.model.videoplaylist.toDatabaseEntity
 import com.quipper.kmmplaylistexercise.shared.data.network.model.videoplaylist.toDomainModel
 import com.quipper.kmmplaylistexercise.shared.domain.model.VideoDomain
 import com.quipper.kmmplaylistexercise.shared.domain.repository.VideoPlaylistRepository
+import com.quipper.kmmplaylistexercise.shared.persistence.VideoQueries
 import io.ktor.utils.io.errors.*
 
 class VideoPlaylistRepositoryImpl(
