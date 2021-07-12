@@ -8,14 +8,12 @@ import com.quipper.kmmplaylistexercise.shared.data.service.KtorClientFactoryImpl
 import kotlinx.cinterop.ObjCClass
 import kotlinx.cinterop.ObjCProtocol
 import kotlinx.cinterop.getOriginalKotlinClass
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.core.Koin
 import org.koin.core.KoinApplication
 import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
 import kotlin.reflect.KClass
 
-@ExperimentalCoroutinesApi
 fun startKoin(): KoinApplication = initKoin(
     arrayOf(iosDomainModule)
 ) {}

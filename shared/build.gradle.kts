@@ -21,18 +21,11 @@ version = "1.0"
 kotlin {
     android()
 
-    val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
-        if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true)
-            ::iosArm64
-        else
-            ::iosX64
-
-    iosTarget("ios") {}
-
-    targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
-        binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework> {
-            isStatic = false
-        }
+    val onPhone = System.getenv("SDK_NAME")?.startsWith("iphoneos") ?: false
+    if (onPhone) {
+        iosArm64("ios")
+    } else {
+        iosX64("ios")
     }
 
     cocoapods {
@@ -43,7 +36,22 @@ kotlin {
         podfile = project.file("../iosApp/Podfile")
     }
 
+    // Configure the framework which is generated internally by cocoapods plugin
+    targets.withType<KotlinNativeTarget> {
+        binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework> {
+            isStatic = true
+            transitiveExport = true
+        }
+    }
+
     sourceSets {
+        all {
+            languageSettings.apply {
+                useExperimentalAnnotation("kotlin.RequiresOptIn")
+                useExperimentalAnnotation("kotlinx.coroutines.ExperimentalCoroutinesApi")
+            }
+        }
+
         val commonMain by getting {
             dependencies {
                 implementation(Dependencies.SqlDelight.runtime)
@@ -52,6 +60,7 @@ kotlin {
                 implementation(Dependencies.Ktor.clientSerialization)
 //                api(Dependencies.Moko.resources)
                 implementation(Dependencies.Koin.core)
+                implementation(Dependencies.MultiPlatformSettings.multiplatformSettings)
                 implementation(Dependencies.Coroutines.core) {
                     isForce = true
                 }
@@ -69,14 +78,21 @@ kotlin {
             dependencies {
                 implementation(Dependencies.SqlDelight.nativeDriver)
                 implementation(Dependencies.Ktor.clientIos)
+                implementation(Dependencies.Coroutines.core) {
+                    version {
+                        strictly(Dependencies.Versions.coroutines)
+                    }
+                }
             }
         }
 
         val commonTest by getting {
             dependencies {
-                implementation(kotlin("test-common"))
-                implementation(kotlin("test-annotations-common"))
+                implementation(Dependencies.KotlinTest.testCommon)
+                implementation(Dependencies.KotlinTest.annotationTest)
                 implementation(Dependencies.Ktor.clientMock)
+                implementation(Dependencies.MultiPlatformSettings.multiplatformSettingsTest)
+                implementation(Dependencies.Koin.koinTest)
 //                implementation(Dependencies.Coroutines.jdk)
 //                implementation(Dependencies.Coroutines.common)
 //                implementation(Dependencies.Coroutines.native)
@@ -92,6 +108,7 @@ kotlin {
                 implementation(Dependencies.AndroidXTest.core)
                 implementation(Dependencies.AndroidXTest.junit)
                 implementation(Dependencies.Test.robolectric)
+                implementation(Dependencies.Coroutines.test)
             }
         }
 

@@ -1,23 +1,17 @@
 package com.quipper.kmmplaylistexercise.shared.data.repository
 
+import com.quipper.kmmplaylistexercise.shared.BaseTest
 import com.quipper.kmmplaylistexercise.shared.KtorClientFactoryTest
-import com.quipper.kmmplaylistexercise.shared.RobolectricTests
 import com.quipper.kmmplaylistexercise.shared.data.network.api.ExerciseApi
 import com.quipper.kmmplaylistexercise.shared.domain.repository.VideoPlaylistRepository
 import com.quipper.kmmplaylistexercise.shared.persistence.AppDatabase
 import com.quipper.kmmplaylistexercise.shared.persistence.VideoQueries
 import com.quipper.kmmplaylistexercise.shared.testDbConnection
-import io.ktor.http.*
 import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import kotlin.test.BeforeTest
 import kotlin.test.Test
-import kotlin.test.*
 
-//expect fun runTest(block: suspend (scope: CoroutineScope) -> Unit)
-
-class VideoPlaylistRepositoryImplTest : RobolectricTests() {
+class VideoPlaylistRepositoryImplTest : BaseTest() {
     private lateinit var videoPlaylistRepository: VideoPlaylistRepository
     private lateinit var videoQueries: VideoQueries
     private lateinit var ktorClientFactory: KtorClientFactoryTest
@@ -38,13 +32,9 @@ class VideoPlaylistRepositoryImplTest : RobolectricTests() {
 
     @DelicateCoroutinesApi
     @Test
-    fun `testbro`() {
-        val response = GlobalScope.launch {
-            kotlin.runCatching {
-                val responseNya = videoPlaylistRepository.getVideos()
-                println("responseNya : ${responseNya.get(0)}")
-            }
-        }
+    fun `testbro`() = runTest {
+        val responseNya = videoPlaylistRepository.getVideos()
+        println("responseNya : ${responseNya.get(0)}")
     }
 
 //    @Test

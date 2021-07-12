@@ -12,7 +12,7 @@ internal actual fun testDbConnection(): SqlDriver {
     val schema = AppDatabase.Schema
     return NativeSqliteDriver(
         DatabaseConfiguration(
-            name = "learn.db",
+            name = "kmmplaylist.db",
             version = schema.version,
             create = { connection ->
                 wrapConnection(connection) { schema.create(it) }
