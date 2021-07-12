@@ -8,4 +8,5 @@ interface VideoPlaylistRepository {
     suspend fun getVideos(): List<VideoDomain>
     suspend fun postLogin(email: String, password: String): LoginDomain
     suspend fun postRegister(email: String, name: String, password: String): RegisterDomain
+    suspend fun getToken(): String
 }

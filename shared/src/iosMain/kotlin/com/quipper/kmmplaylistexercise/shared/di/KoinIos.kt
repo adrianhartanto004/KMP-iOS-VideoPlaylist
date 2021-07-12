@@ -1,5 +1,6 @@
 package com.quipper.kmmplaylistexercise.shared.di
 
+import com.quipper.kmmplaylistexercise.shared.data.domain.GetUserTokenIos
 import com.quipper.kmmplaylistexercise.shared.data.domain.GetVideoListIos
 import com.quipper.kmmplaylistexercise.shared.data.domain.PostLoginIos
 import com.quipper.kmmplaylistexercise.shared.data.domain.PostRegisterIos
@@ -26,6 +27,7 @@ private val iosDomainModule = module {
     factory { GetVideoListIos() }
     factory { PostLoginIos() }
     factory { PostRegisterIos() }
+    factory { GetUserTokenIos() }
 }
 
 actual val platformModule = module {
