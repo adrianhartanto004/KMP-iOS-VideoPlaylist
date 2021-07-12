@@ -18,7 +18,7 @@ struct RegisterView: View {
     case .Ready, .Loading, .Error :
       return AnyView(RegisterContentView(viewModel: viewModel))
     case .Success :
-      return AnyView(LoginView(postLoginIos: .init()))
+      return AnyView(LoginView(postLoginIos: .init(), isFromRegisterPage: true))
     case .AuthError(let error):
       return AnyView(RegisterContentView(viewModel: viewModel, errorText: error))
     }
@@ -89,13 +89,6 @@ struct RegisterContentView : View {
       }.padding(.top, 50)
 
       Spacer()
-      HStack(spacing: 0) {
-        Text("Don't have an account? ")
-        Button(action: {}) {
-          Text("Sign Up")
-            .foregroundColor(.black)
-        }
-      }
     }
     .background(
       LinearGradient(gradient: Gradient(colors: [.purple, .blue]), startPoint: .top, endPoint: .bottom)

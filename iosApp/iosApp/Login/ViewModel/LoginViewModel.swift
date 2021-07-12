@@ -8,6 +8,7 @@ class LoginViewModel : ObservableObject {
 
   @Published var status: LoginState = LoginState.Ready
   @Published var showAlert = false
+  @Published var isFromRegisterPage = false
 
   init(postLoginUseCase: PostLoginIos) {
     self.postLoginUseCase = postLoginUseCase

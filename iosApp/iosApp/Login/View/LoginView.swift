@@ -3,14 +3,17 @@ import shared
 
 struct LoginView: View {
 
-  @ObservedObject var viewModel: LoginViewModel
+  var isFromRegisterPage = false
 
-  init(postLoginIos: PostLoginIos) {
+  @ObservedObject var viewModel: LoginViewModel
+  init(postLoginIos: PostLoginIos, isFromRegisterPage: Bool) {
     viewModel = LoginViewModel(postLoginUseCase: postLoginIos)
+    self.isFromRegisterPage = isFromRegisterPage
+    viewModel.isFromRegisterPage = isFromRegisterPage
   }
 
   var body: some View {
-      loginViews()
+    loginViews()
   }
 
   private func loginViews() -> AnyView {
@@ -69,11 +72,15 @@ struct LoginContentView : View {
       }.padding(.top, 50)
 
       Spacer()
-      HStack(spacing: 0) {
-        Text("Don't have an account? ")
-        Button(action: {}) {
-          Text("Sign Up")
-            .foregroundColor(.black)
+      if !viewModel.isFromRegisterPage {
+        HStack(spacing: 0) {
+          Text("Don't have an account? ")
+          NavigationLink(
+            destination: RegisterView(postRegisterIos: .init())
+          ){
+            Text("Sign Up")
+              .foregroundColor(.black)
+          }
         }
       }
     }

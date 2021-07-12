@@ -3,7 +3,6 @@ package com.quipper.kmmplaylistexercise.shared.data.repository
 import com.quipper.kmmplaylistexercise.shared.cache.VideoQueries
 import com.quipper.kmmplaylistexercise.shared.data.network.api.ExerciseApi
 import com.quipper.kmmplaylistexercise.shared.data.network.model.login.toDomainModel
-import com.quipper.kmmplaylistexercise.shared.data.network.model.register.toDomainModel
 import com.quipper.kmmplaylistexercise.shared.data.network.model.videoplaylist.toDatabaseEntity
 import com.quipper.kmmplaylistexercise.shared.data.network.model.videoplaylist.toDomainModel
 import com.quipper.kmmplaylistexercise.shared.domain.model.LoginDomain
@@ -37,12 +36,7 @@ class VideoPlaylistRepositoryImpl(
     }
 
     override suspend fun postLogin(email: String, password: String): LoginDomain {
-        try {
-            return exerciseApi.postLogin(email, password).toDomainModel()
-        } catch (throwable: Throwable) {
-            print(throwable.message)
-        }
-        return LoginDomain()
+        return exerciseApi.postLogin(email, password).toDomainModel()
     }
 
     override suspend fun postRegister(
@@ -50,11 +44,7 @@ class VideoPlaylistRepositoryImpl(
         name: String,
         password: String
     ): RegisterDomain {
-        try {
-            return exerciseApi.postRegister(email, name, password).toDomainModel()
-        } catch (throwable: Throwable) {
-            print(throwable.message)
-        }
-        return RegisterDomain()
+        val response = exerciseApi.postRegister(email, name, password)
+        return RegisterDomain(response.value in 200..299)
     }
 }

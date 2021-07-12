@@ -30,14 +30,14 @@ class RegisterViewModel : ObservableObject {
     } else {
       postRegisterUseCase.execute(email: email, name: name, password: password)
         .subscribe(scope: scopeHandler, onSuccess: { registerDomain in
-          if registerDomain?.isSuccess ?? true {
-            self.status = .Success
-          } else {
-            self.showAlert = true
-            self.status = .AuthError("Register failed, please try again later")
-          }
+            if registerDomain?.isSuccess ?? true {
+              self.status = .Success
+            } else {
+              self.showAlert = true
+              self.status = .AuthError("Register failed, please try again later")
+            }
         }, onError: { KotlinThrowable in
-          self.status = .Error
+            self.status = .Error
         })
     }
   }
