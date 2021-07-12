@@ -5,6 +5,8 @@ struct RegisterView: View {
 
   @ObservedObject var viewModel: RegisterViewModel
 
+  @Environment(\.presentationMode) var presentation
+
   init(postRegisterIos: PostRegisterIos) {
     viewModel = RegisterViewModel(postRegisterUseCase: postRegisterIos)
   }
@@ -18,7 +20,9 @@ struct RegisterView: View {
     case .Ready, .Loading, .Error :
       return AnyView(RegisterContentView(viewModel: viewModel))
     case .Success :
-      return AnyView(LoginView(postLoginIos: .init(), isFromRegisterPage: true))
+      self.presentation.wrappedValue.dismiss()
+      viewModel.status = .Ready
+      return AnyView(RegisterContentView(viewModel: viewModel))
     case .AuthError(let error):
       return AnyView(RegisterContentView(viewModel: viewModel, errorText: error))
     }
