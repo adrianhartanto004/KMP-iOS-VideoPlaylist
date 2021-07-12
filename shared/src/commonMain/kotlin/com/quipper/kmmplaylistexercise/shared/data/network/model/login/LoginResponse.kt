@@ -1,6 +1,5 @@
 package com.quipper.kmmplaylistexercise.shared.data.network.model.login
 
-
 import com.quipper.kmmplaylistexercise.shared.domain.model.LoginDomain
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -13,5 +12,10 @@ data class LoginResponse(
     val error: String = ""
 )
 
-//fun LoginResponse.toDomainModel() =
-//    LoginDomain(token, error)
+fun LoginResponse.toDomainModel(): LoginDomain {
+    if (token.isEmpty()) {
+        return LoginDomain("", error)
+    }
+    return LoginDomain(token, "")
+}
+

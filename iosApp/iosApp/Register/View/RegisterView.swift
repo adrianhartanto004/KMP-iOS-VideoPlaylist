@@ -50,6 +50,12 @@ struct RegisterContentView : View {
           .cornerRadius(20.0)
           .shadow(radius: 10.0, x: 20, y: 10)
 
+        if email.isEmpty {
+          Text("Email is not valid")
+            .font(.caption)
+            .foregroundColor(.white)
+        }
+
         TextField("Name", text: self.$name)
           .padding()
           .background(Color.themeTextField)
@@ -83,13 +89,13 @@ struct RegisterContentView : View {
       }.padding(.top, 50)
 
       Spacer()
-//      HStack(spacing: 0) {
-//        Text("Don't have an account? ")
-//        Button(action: {}) {
-//          Text("Sign Up")
-//            .foregroundColor(.black)
-//        }
-//      }
+      HStack(spacing: 0) {
+        Text("Don't have an account? ")
+        Button(action: {}) {
+          Text("Sign Up")
+            .foregroundColor(.black)
+        }
+      }
     }
     .background(
       LinearGradient(gradient: Gradient(colors: [.purple, .blue]), startPoint: .top, endPoint: .bottom)
