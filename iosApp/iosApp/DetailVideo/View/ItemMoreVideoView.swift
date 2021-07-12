@@ -7,11 +7,13 @@
 //
 
 import SwiftUI
+import shared
 
 struct ItemMoreVideoView: View {
+  let video: VideoDomain
     var body: some View {
       HStack (alignment: .top) {
-        AsyncImage(url: URL(string: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg")!,
+        AsyncImage(url: URL(string: video.thumbnailUrl)!,
                    placeholder: { Text("Loading ...") },
                    image: {
                     Image(uiImage: $0).resizable()})
@@ -19,11 +21,11 @@ struct ItemMoreVideoView: View {
           .frame(maxWidth: UIScreen.screenWidth/4)
         VStack(alignment: .leading) {
           HStack {
-            Text("video.title")
+            Text(video.title)
             Spacer()
-            Text("video.author"+"\n").font(.caption)
+            Text(video.author+"\n").font(.caption)
           }
-          Text("video.playListDescription")
+          Text(video.desc)
             .lineLimit(2)
             .font(.caption)
         }
@@ -39,6 +41,6 @@ struct ItemMoreVideoView: View {
 
 struct ItemMoreVideo_Previews: PreviewProvider {
     static var previews: some View {
-        ItemMoreVideoView()
+      ItemMoreVideoView(video: VideoDomain(id: 1, desc: "", videoUrl: "", author: "", thumbnailUrl: "", title: ""))
     }
 }

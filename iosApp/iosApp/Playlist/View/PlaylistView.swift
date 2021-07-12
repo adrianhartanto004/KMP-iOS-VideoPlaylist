@@ -25,7 +25,7 @@ struct PlaylistView: View {
       return AnyView(
         ForEach(videos, id:\.self) { video in
           NavigationLink (
-            destination: DetailView(video: video, listMoreVideo: videos)
+            destination: DetailView(video: video, listMoreVideo: videos, getVideoListUseCase: .init())
           ) {
             CardPlaylist(video: video)
           }

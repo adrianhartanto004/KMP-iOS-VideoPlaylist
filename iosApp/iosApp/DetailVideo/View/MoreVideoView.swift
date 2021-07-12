@@ -11,6 +11,7 @@ import shared
 
 struct MoreVideoView: View {
   let listVideo: [VideoDomain]
+  let onChange: (VideoDomain) -> Void
 
   var body: some View {
     Section(header: HStack {
@@ -20,8 +21,11 @@ struct MoreVideoView: View {
     }
     .background(Color(UIColor.systemBackground))
     ) {
-      ForEach(0...5, id: \.self) { num in
-        ItemMoreVideoView()
+      ForEach(listVideo, id: \.self) { video in
+        Button(action: { onChange(video) }) {
+          ItemMoreVideoView(video: video)
+        }
+        .buttonStyle(PlainButtonStyle())
       }
     }
   }
