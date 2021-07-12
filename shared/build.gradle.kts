@@ -29,6 +29,12 @@ kotlin {
 
     iosTarget("ios") {}
 
+    targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
+        binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework> {
+            isStatic = false
+        }
+    }
+
     cocoapods {
         summary = "Kmm Playlist Exercise shared module"
         homepage = "Link to the Shared Module homepage"

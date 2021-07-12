@@ -1,16 +1,25 @@
 PODS:
   - shared (1.0)
+  - sqlite3 (3.36.0):
+    - sqlite3/common (= 3.36.0)
+  - sqlite3/common (3.36.0)
 
 DEPENDENCIES:
   - shared (from `../shared`)
+  - sqlite3
+
+SPEC REPOS:
+  trunk:
+    - sqlite3
 
 EXTERNAL SOURCES:
   shared:
     :path: "../shared"
 
 SPEC CHECKSUMS:
-  shared: f68d58e97b2b0d92edfe4750888de1369f9fadcf
+  shared: 0ea892c3dbcfa8d680b01d8d33c3dd9612cd8245
+  sqlite3: 797b1b1f92baf74716a3179f69d9652ce4a5df3f
 
-PODFILE CHECKSUM: f282da88f39e69507b0a255187c8a6b644477756
+PODFILE CHECKSUM: d270b06c48c41ddadcc29842c3a4e00b34caa75e
 
 COCOAPODS: 1.10.1

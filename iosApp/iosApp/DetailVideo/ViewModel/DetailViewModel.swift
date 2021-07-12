@@ -9,7 +9,7 @@
 import Foundation
 
 class DetailViewModel: ObservableObject {
-  @Published var status: Status = Status.Success
+  @Published var status: Status = Status.Loading
 
   func getMoreVideos() {
 
