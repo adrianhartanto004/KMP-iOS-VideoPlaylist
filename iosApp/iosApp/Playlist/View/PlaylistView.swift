@@ -3,9 +3,11 @@ import shared
 
 struct PlaylistView: View {
   @ObservedObject var viewModel: PlaylistViewModel
+  let onLogout: ()->Void
 
-  init(getVideoListUseCase: GetVideoListIos, deleteUserTokenUseCase: DeleteUserTokenIos) {
-    viewModel = PlaylistViewModel(getVideoListUseCase: getVideoListUseCase, deleteUserTokenUseCase: deleteUserTokenUseCase)
+  init(getVideoListUseCase: GetVideoListIos, onLogout: @escaping ()->Void) {
+    viewModel = PlaylistViewModel(getVideoListUseCase: getVideoListUseCase)
+    self.onLogout = onLogout
     viewModel.getPlaylist()
   }
 
@@ -30,16 +32,10 @@ struct PlaylistView: View {
           .buttonStyle(PlainButtonStyle())
         }
         .navigationBarTitle("Playlist")
-        .navigationBarItems(trailing: Button("Logout") {
-          viewModel.clearUserToken()
-        })
+        .navigationBarItems(trailing: Button("Logout", action: onLogout))
       )
     case .Error :
       return AnyView(Text("error").multilineTextAlignment(.center))
-    case .Logout :
-      return AnyView(
-        LoginView(postLoginIos: .init(), isFromRegisterPage: false)
-      )
     }
   }
 }

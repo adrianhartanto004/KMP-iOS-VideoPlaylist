@@ -82,7 +82,7 @@ struct RegisterContentView : View {
       Button(action: {
         viewModel.postRegister(email: self.email, name: self.name, password: self.password, confirmPassword: self.confirmPassword)
       }) {
-        Text("Sign In")
+        Text("Sign Up")
           .font(.headline)
           .foregroundColor(.white)
           .padding()

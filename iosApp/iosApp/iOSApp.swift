@@ -10,7 +10,7 @@ struct iOSApp: App {
   var body: some Scene {
     WindowGroup {
       NavigationView {
-        SplashScreenView(getUserTokenUseCase: .init())
+        SplashScreenView(getUserTokenUseCase: .init(), deleteUserTokenUseCase: .init())
       }
     }
   }

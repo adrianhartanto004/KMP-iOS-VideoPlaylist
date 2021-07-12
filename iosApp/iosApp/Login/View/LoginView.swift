@@ -4,10 +4,12 @@ import shared
 struct LoginView: View {
 
   var isFromRegisterPage = false
+  let onLogin: () -> Void
 
   @ObservedObject var viewModel: LoginViewModel
-  init(postLoginIos: PostLoginIos, isFromRegisterPage: Bool) {
+  init(postLoginIos: PostLoginIos, isFromRegisterPage: Bool, onLogin: @escaping () -> Void) {
     viewModel = LoginViewModel(postLoginUseCase: postLoginIos)
+    self.onLogin = onLogin
     self.isFromRegisterPage = isFromRegisterPage
     viewModel.isFromRegisterPage = isFromRegisterPage
   }
@@ -21,7 +23,8 @@ struct LoginView: View {
     case .Ready, .Loading, .Error :
       return AnyView(LoginContentView(viewModel: viewModel))
     case .Success :
-      return AnyView(PlaylistView(getVideoListUseCase: .init(), deleteUserTokenUseCase: .init()))
+      onLogin()
+      return AnyView(LoginContentView(viewModel: viewModel))
     case .AuthError(let error):
       return AnyView(LoginContentView(viewModel: viewModel, errorText: error))
     }
@@ -91,6 +94,7 @@ struct LoginContentView : View {
       Alert(title: Text("Login Failed"),
             message: Text(errorText))
     }
+    .navigationBarItems(trailing: Text(""))
   }
 }
 
