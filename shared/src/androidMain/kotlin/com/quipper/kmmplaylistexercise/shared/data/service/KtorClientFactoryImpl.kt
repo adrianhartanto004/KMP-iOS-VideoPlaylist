@@ -18,7 +18,6 @@ class KtorClientFactoryImpl : KtorClientFactory, KoinComponent {
 
             install(JsonFeature) {
                 serializer = KotlinxSerializer(nonStrictJson)
-                acceptContentTypes += ContentType("application", "json+hal")
             }
         }
     }

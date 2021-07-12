@@ -77,6 +77,10 @@ kotlin {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
                 implementation(Dependencies.Ktor.clientMock)
+//                implementation(Dependencies.Coroutines.jdk)
+//                implementation(Dependencies.Coroutines.common)
+//                implementation(Dependencies.Coroutines.native)
+//                implementation(Dependencies.Coroutines.test)
             }
         }
 
