@@ -3,7 +3,7 @@ sealed class Dependencies {
 //        const val mokoResources = "dev.icerock.mobile.multiplatform-resources"
         const val buildKonfig = "com.codingfeline.buildkonfig"
     }
-    private object Versions {
+    object Versions {
         const val sqlDelight = "1.5.0"
         const val robolectric = "4.4"
         const val kotlin = "1.5.0"
@@ -12,6 +12,7 @@ sealed class Dependencies {
         const val koin = "3.0.1"
         const val coroutines = "1.5.0-native-mt"
         const val konfig = "0.7.0"
+        const val multiplatformSettings = "0.7.7"
 
         object Android {
             const val material = "1.2.1"
@@ -41,7 +42,7 @@ sealed class Dependencies {
         const val junit = "androidx.test.ext:junit:${Versions.AndroidX.testExt}"
     }
 
-    object Kotlin {
+    object KotlinTest {
         const val testCommon = "org.jetbrains.kotlin:kotlin-test-common:${Versions.kotlin}"
         const val annotationTest =
             "org.jetbrains.kotlin:kotlin-test-annotations-common:${Versions.kotlin}"
@@ -70,13 +71,21 @@ sealed class Dependencies {
 
     object Koin {
         const val core = "io.insert-koin:koin-core:${Versions.koin}"
+        const val koinTest = "io.insert-koin:koin-test:${Versions.koin}"
     }
 
     object Coroutines {
         const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+        const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+        const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
     }
 
     object BuildKonfig {
         const val konfig = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin:${Versions.konfig}"
+    }
+
+    object MultiPlatformSettings {
+        const val multiplatformSettings = "com.russhwolf:multiplatform-settings:${Versions.multiplatformSettings}"
+        const val multiplatformSettingsTest = "com.russhwolf:multiplatform-settings-test:${Versions.multiplatformSettings}"
     }
 }

@@ -1,12 +1,17 @@
 import SwiftUI
+import shared
 
 @main
 struct iOSApp: App {
-	var body: some Scene {
-		WindowGroup {
+  init(){
+    KoinIosKt.startKoin()
+  }
+
+  var body: some Scene {
+    WindowGroup {
       NavigationView {
-        PlaylistView()
+        SplashScreenView(getUserTokenUseCase: .init(), deleteUserTokenUseCase: .init())
       }
-		}
-	}
+    }
+  }
 }

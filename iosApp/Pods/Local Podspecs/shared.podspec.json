@@ -14,7 +14,7 @@
   "libraries": "c++",
   "module_name": "shared_umbrella",
   "platforms": {
-    "ios": "14.1"
+    "ios": "14"
   },
   "pod_target_xcconfig": {
     "KOTLIN_TARGET[sdk=iphonesimulator*]": "ios_x64",
