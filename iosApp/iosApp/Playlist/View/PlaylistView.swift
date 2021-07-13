@@ -3,9 +3,11 @@ import shared
 
 struct PlaylistView: View {
   @ObservedObject var viewModel: PlaylistViewModel
+  let onLogout: ()->Void
 
-  init(getVideoListUseCase: GetVideoListIos) {
+  init(getVideoListUseCase: GetVideoListIos, onLogout: @escaping ()->Void) {
     viewModel = PlaylistViewModel(getVideoListUseCase: getVideoListUseCase)
+    self.onLogout = onLogout
     viewModel.getPlaylist()
   }
 
@@ -13,7 +15,6 @@ struct PlaylistView: View {
     ScrollView {
       playlist()
     }
-    .navigationBarTitle("Playlist")
   }
 
   private func playlist() -> AnyView {
@@ -24,12 +25,14 @@ struct PlaylistView: View {
       return AnyView(
         ForEach(videos, id:\.self) { video in
           NavigationLink (
-            destination: DetailView(video: video, listMoreVideo: videos)
+            destination: DetailView(video: video, listMoreVideo: videos, getVideoListUseCase: .init())
           ) {
             CardPlaylist(video: video)
           }
           .buttonStyle(PlainButtonStyle())
         }
+        .navigationBarTitle("Playlist")
+        .navigationBarItems(trailing: Button("Logout", action: onLogout))
       )
     case .Error :
       return AnyView(Text("error").multilineTextAlignment(.center))

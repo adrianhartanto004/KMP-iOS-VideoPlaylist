@@ -1,6 +1,6 @@
 package com.quipper.kmmplaylistexercise.shared.data.network.model.videoplaylist
 
-import com.quipper.kmmplaylistexercise.shared.cache.Video
+import com.quipper.kmmplaylistexercise.shared.persistence.Video
 import com.quipper.kmmplaylistexercise.shared.domain.model.VideoDomain
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

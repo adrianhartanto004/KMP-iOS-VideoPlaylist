@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1C5B60F3DC91CC08A9A2314A /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EBB606237B8BC50536060E2 /* Pods_iosApp.framework */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
+		231AD09D269C1352007682AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 231AD09C269C1352007682AE /* Assets.xcassets */; };
+		231AD0A3269C17F5007682AE /* SplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231AD0A2269C17F5007682AE /* SplashScreenViewModel.swift */; };
+		231AD0A5269C19CB007682AE /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231AD0A4269C19CB007682AE /* SplashScreenView.swift */; };
+		231AD0A8269C1CA2007682AE /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231AD0A7269C1CA2007682AE /* ColorExtension.swift */; };
 		23BEE9A02696E13A00BC0FE0 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BEE99F2696E13A00BC0FE0 /* LoginViewModel.swift */; };
 		23BEE9A22696E30800BC0FE0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BEE9A12696E30800BC0FE0 /* LoginView.swift */; };
 		422BE73F269587D70039FF26 /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422BE73E269587D70039FF26 /* PlaylistView.swift */; };
@@ -28,6 +32,10 @@
 
 /* Begin PBXFileReference section */
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		231AD09C269C1352007682AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		231AD0A2269C17F5007682AE /* SplashScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewModel.swift; sourceTree = "<group>"; };
+		231AD0A4269C19CB007682AE /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		231AD0A7269C1CA2007682AE /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		23BEE99F2696E13A00BC0FE0 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		23BEE9A12696E30800BC0FE0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		422BE73E269587D70039FF26 /* PlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
@@ -62,6 +70,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		231AD09E269C17C5007682AE /* SplashScreen */ = {
+			isa = PBXGroup;
+			children = (
+				231AD09F269C17D2007682AE /* View */,
+				231AD0A1269C17DE007682AE /* ViewModel */,
+			);
+			path = SplashScreen;
+			sourceTree = "<group>";
+		};
+		231AD09F269C17D2007682AE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				231AD0A4269C19CB007682AE /* SplashScreenView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		231AD0A1269C17DE007682AE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				231AD0A2269C17F5007682AE /* SplashScreenViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		23BEE99B2696E0F800BC0FE0 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				422BE741269588FE0039FF26 /* AsyncImage.swift */,
+				231AD0A7269C1CA2007682AE /* ColorExtension.swift */,
 				422BE7562695A39D0039FF26 /* Status.swift */,
 				422BE74E269598220039FF26 /* UIScreen.swift */,
 			);
@@ -206,12 +240,14 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
-				427E85CE26980C7800C6768D /* Register */,
-				23BEE99B2696E0F800BC0FE0 /* Login */,
+				231AD09C269C1352007682AE /* Assets.xcassets */,
 				422BE74526958EDA0039FF26 /* DetailVideo */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
+				23BEE99B2696E0F800BC0FE0 /* Login */,
 				422BE73D269587B00039FF26 /* Playlist */,
+				427E85CE26980C7800C6768D /* Register */,
+				231AD09E269C17C5007682AE /* SplashScreen */,
 				422BE740269588CB0039FF26 /* Util */,
 			);
 			path = iosApp;
@@ -285,6 +321,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				231AD09D269C1352007682AE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,13 +383,16 @@
 				422BE7572695A39D0039FF26 /* Status.swift in Sources */,
 				422BE74726958EF30039FF26 /* DetailView.swift in Sources */,
 				422BE74426958B290039FF26 /* CardPlaylist.swift in Sources */,
+				231AD0A3269C17F5007682AE /* SplashScreenViewModel.swift in Sources */,
 				23BEE9A22696E30800BC0FE0 /* LoginView.swift in Sources */,
+				231AD0A5269C19CB007682AE /* SplashScreenView.swift in Sources */,
 				23BEE9A02696E13A00BC0FE0 /* LoginViewModel.swift in Sources */,
 				422BE749269590D60039FF26 /* VideoInfoView.swift in Sources */,
 				422BE73F269587D70039FF26 /* PlaylistView.swift in Sources */,
 				427E85D526980F6200C6768D /* RegisterView.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				422BE74F269598220039FF26 /* UIScreen.swift in Sources */,
+				231AD0A8269C1CA2007682AE /* ColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -4,7 +4,6 @@ import io.ktor.client.*
 import io.ktor.client.engine.ios.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
-import io.ktor.http.*
 import kotlinx.serialization.json.Json
 import org.koin.core.component.KoinComponent
 
@@ -18,10 +17,6 @@ class KtorClientFactoryImpl : KtorClientFactory, KoinComponent {
 
             install(JsonFeature) {
                 serializer = KotlinxSerializer(nonStrictJson)
-                receiveContentTypeMatchers += object : ContentTypeMatcher {
-                    override fun contains(contentType: ContentType): Boolean =
-                        contentType == ContentType("text", "plain")
-                }
             }
         }
     }

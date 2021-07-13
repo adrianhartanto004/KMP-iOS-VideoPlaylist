@@ -3,22 +3,28 @@ import shared
 
 struct LoginView: View {
 
-  @ObservedObject var viewModel: LoginViewModel
+  var isFromRegisterPage = false
+  let onLogin: () -> Void
 
-  init(postLoginIos: PostLoginIos) {
+  @ObservedObject var viewModel: LoginViewModel
+  init(postLoginIos: PostLoginIos, isFromRegisterPage: Bool, onLogin: @escaping () -> Void) {
     viewModel = LoginViewModel(postLoginUseCase: postLoginIos)
+    self.onLogin = onLogin
+    self.isFromRegisterPage = isFromRegisterPage
+    viewModel.isFromRegisterPage = isFromRegisterPage
   }
 
   var body: some View {
-      loginViews()
+    loginViews()
   }
 
   private func loginViews() -> AnyView {
-    switch viewModel.status {
+    switch viewModel.uiState {
     case .Ready, .Loading, .Error :
       return AnyView(LoginContentView(viewModel: viewModel))
     case .Success :
-      return AnyView(PlaylistView(getVideoListUseCase: .init()))
+      onLogin()
+      return AnyView(LoginContentView(viewModel: viewModel))
     case .AuthError(let error):
       return AnyView(LoginContentView(viewModel: viewModel, errorText: error))
     }
@@ -35,54 +41,75 @@ struct LoginContentView : View {
   @State private var password = ""
 
   var body: some View {
-    VStack() {
-      Text("Login")
-        .font(.largeTitle).foregroundColor(Color.white)
-        .padding([.top, .bottom], 40)
-        .shadow(radius: 10.0, x: 20, y: 10)
-
-      VStack(alignment: .leading, spacing: 15) {
-        TextField("Email", text: self.$email)
-          .padding()
-          .background(Color.themeTextField)
-          .cornerRadius(20.0)
+    ZStack {
+      VStack {
+        Text("Login")
+          .font(.largeTitle).foregroundColor(Color.white)
+          .padding([.top, .bottom], 40)
           .shadow(radius: 10.0, x: 20, y: 10)
 
-        SecureField("Password", text: self.$password)
-          .padding()
-          .background(Color.themeTextField)
-          .cornerRadius(20.0)
-          .shadow(radius: 10.0, x: 20, y: 10)
-      }.padding([.leading, .trailing], 27.5)
+        VStack(alignment: .leading, spacing: 15) {
+          TextField("Email", text: self.$email)
+            .padding()
+            .background(Color.themeTextField)
+            .cornerRadius(20.0)
+            .shadow(radius: 10.0, x: 20, y: 10)
 
-      Button(action: {
-        viewModel.postLogin(email: self.email, password: self.password)
-      }) {
-        Text("Sign In")
-          .font(.headline)
-          .foregroundColor(.white)
-          .padding()
-          .frame(width: 300, height: 50)
-          .background(Color.green)
-          .cornerRadius(15.0)
-          .shadow(radius: 10.0, x: 20, y: 10)
-      }.padding(.top, 50)
+          SecureField("Password", text: self.$password)
+            .padding()
+            .background(Color.themeTextField)
+            .cornerRadius(20.0)
+            .shadow(radius: 10.0, x: 20, y: 10)
+        }.padding([.leading, .trailing], 27.5)
 
-      Spacer()
-      HStack(spacing: 0) {
-        Text("Don't have an account? ")
-        Button(action: {}) {
-          Text("Sign Up")
-            .foregroundColor(.black)
+        Button(action: {
+          viewModel.postLogin(email: self.email, password: self.password)
+        }) {
+          Text("Sign In")
+            .font(.headline)
+            .foregroundColor(.white)
+            .padding()
+            .frame(width: 300, height: 50)
+            .background(Color.green)
+            .cornerRadius(15.0)
+            .shadow(radius: 10.0, x: 20, y: 10)
+        }.padding(.top, 50)
+
+        Spacer()
+        if !viewModel.isFromRegisterPage {
+          HStack(spacing: 0) {
+            Text("Don't have an account? ")
+            NavigationLink(
+              destination: RegisterView(postRegisterIos: .init())
+            ){
+              Text("Sign Up")
+                .foregroundColor(.black)
+            }
+          }
         }
       }
-    }
-    .background(
-      LinearGradient(gradient: Gradient(colors: [.purple, .blue]), startPoint: .top, endPoint: .bottom)
-        .edgesIgnoringSafeArea(.all))
-    .alert(isPresented: $viewModel.showAlert) {
-      Alert(title: Text("Login Failed"),
-            message: Text(errorText))
+      .background(
+        LinearGradient(gradient: Gradient(colors: [.purple, .blue]), startPoint: .top, endPoint: .bottom)
+          .edgesIgnoringSafeArea(.all))
+      .alert(isPresented: $viewModel.showAlert) {
+        Alert(title: Text("Login Failed"),
+              message: Text(errorText))
+      }
+      .navigationBarItems(trailing: Text(""))
+      if viewModel.uiState == LoginState.Loading {
+        Rectangle()
+          .fill(Color.black).opacity(0.6)
+          .edgesIgnoringSafeArea(.all)
+
+        VStack(spacing: 48) {
+          ProgressView().scaleEffect(2.0, anchor: .center)
+          Text("Loading...").font(.title).fontWeight(.semibold)
+        }
+        .frame(width: 250, height: 200)
+        .background(Color.white)
+        .foregroundColor(Color.primary)
+        .cornerRadius(16)
+      }
     }
   }
 }
