@@ -1,6 +1,7 @@
 package com.quipper.kmmplaylistexercise.shared.data.repository
 
 import com.quipper.kmmplaylistexercise.shared.BaseTest
+import com.quipper.kmmplaylistexercise.shared.data.constant.Constants
 import com.quipper.kmmplaylistexercise.shared.data.mock.ExerciseApiMock
 import com.quipper.kmmplaylistexercise.shared.data.preference.KmmPreferenceMock
 import com.quipper.kmmplaylistexercise.shared.data.preferences.KmmPreferences
@@ -57,7 +58,7 @@ class LoginRepositoryImplTest : BaseTest() {
         exerciseApiMock.isLoginSuccess = true
         runTest {
             sut.postLogin(EMAIL, PASSWORD)
-            val kmmPreferenceToken = kmmPreferences.getString("LOGIN_TOKEN_KEY")
+            val kmmPreferenceToken = kmmPreferences.getString(Constants.LOGIN_TOKEN_KEY)
             assertNotNull(kmmPreferenceToken)
         }
     }
@@ -67,7 +68,7 @@ class LoginRepositoryImplTest : BaseTest() {
         exerciseApiMock.isLoginSuccess = false
         runTest {
             sut.postLogin(EMAIL, PASSWORD)
-            val kmmPreferenceToken = kmmPreferences.getString("LOGIN_TOKEN_KEY")
+            val kmmPreferenceToken = kmmPreferences.getString(Constants.LOGIN_TOKEN_KEY)
             assertNull(kmmPreferenceToken)
         }
     }
