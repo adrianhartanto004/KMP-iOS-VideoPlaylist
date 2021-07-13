@@ -4,27 +4,22 @@ import shared
 
 struct DetailView: View {
   @ObservedObject var viewModel: DetailViewModel
-  @State var avPlayer: AVPlayer?
 
   init(video: VideoDomain, listMoreVideo: [VideoDomain], getVideoListUseCase: GetVideoListIos){
     self.viewModel = DetailViewModel(getVideoListUseCase: getVideoListUseCase, video: video, listMoreVideo: listMoreVideo)
-    guard let videoUrl = URL(string: video.videoUrl) else { return }
-    avPlayer = AVPlayer(url: videoUrl)
-    viewModel.getMoreVideos()
+    self.viewModel.getMoreVideos()
+    self.viewModel.changeVideo(video: video)
   }
 
   var body: some View {
     VStack {
-      VideoPlayer(player: avPlayer)
+      VideoPlayer(player: viewModel.avPlayer)
         .frame(height: 300)
       ScrollView {
         LazyVStack (alignment: .leading, pinnedViews: .sectionHeaders) {
           VideoInfoView(video: viewModel.video)
           MoreVideoView(listVideo: viewModel.listMoreVideo) {
-            avPlayer?.pause()
-            guard let videoUrl = URL(string: $0.videoUrl) else { return }
-            avPlayer = AVPlayer(url: videoUrl)
-            viewModel.video = $0
+            viewModel.changeVideo(video: $0)
           }
           Spacer()
         }
@@ -32,10 +27,10 @@ struct DetailView: View {
       }
     }
     .onAppear{
-      avPlayer?.seek(to: .zero)
+      viewModel.avPlayer.seek(to: .zero)
     }
     .onDisappear {
-      avPlayer?.pause()
+      viewModel.avPlayer.pause()
     }
   }
 }
