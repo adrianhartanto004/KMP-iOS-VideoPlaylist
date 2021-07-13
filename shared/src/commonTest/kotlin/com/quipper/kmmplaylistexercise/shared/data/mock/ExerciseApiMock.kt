@@ -24,8 +24,20 @@ class ExerciseApiMock : ExerciseApi {
         }
     }
 
+    var isLoginSuccess = false
+
     override suspend fun postLogin(email: String, password: String): LoginResponse {
-        TODO("Not yet implemented")
+        return if (isLoginSuccess) {
+            LoginResponse(
+                "27as8fds82r",
+                ""
+            )
+        } else {
+            LoginResponse(
+                "",
+                "Email or password not found"
+            )
+        }
     }
 
     override suspend fun postRegister(
