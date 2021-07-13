@@ -15,20 +15,10 @@ class VideoPlaylistRepositoryImplTest : BaseTest() {
 
     private var exerciseApiMock = ExerciseApiMock()
 
-//    companion object {
-//        val videoDomainMockData = listOf(
-//            VideoDomain(1, "desc", "videoUrl", "author", "thumbnailUrl", "title"),
-//            VideoDomain(2, "desc", "videoUrl", "author", "thumbnailUrl", "title"),
-//            VideoDomain(3, "desc", "videoUrl", "author", "thumbnailUrl", "title")
-//        )
-//    }
-
     @BeforeTest
     fun setup() {
-//        exerciseApiMock = ExerciseApiMock()
         val db = AppDatabase(testDbConnection())
         videoQueries = db.videoQueries
-//        videoQueries.clearAll()
         sut = VideoPlaylistRepositoryImpl(
             exerciseApiMock,
             videoQueries
@@ -48,18 +38,6 @@ class VideoPlaylistRepositoryImplTest : BaseTest() {
             assertTrue {
                 apiMockResult[0].id == videoDb[0].id.toInt()
             }
-        }
-    }
-
-    @Test
-    fun `fetch data should return data if netwok error`() {
-        runTest {
-            exerciseApiMock.isEmptyRequest = false
-            exerciseApiMock.getVideos()
-            val result = sut.getVideos()
-            val videoDb = videoQueries.getAll().executeAsList()
-
-            assertEquals(result[0].desc, videoDb[0].toDomainModel().desc)
         }
     }
 
