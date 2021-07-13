@@ -18,7 +18,7 @@ class RegisterViewModel : ObservableObject {
     self.showAlert = false
     if(!validateEmail(email: email)){
       self.showAlert = true
-      self.uiState = .AuthError("Email is empty")
+      self.uiState = .AuthError("Email is not valid")
     } else if !validateName(name: name) {
       self.showAlert = true
       self.uiState = .AuthError("Name is empty")
@@ -27,7 +27,7 @@ class RegisterViewModel : ObservableObject {
       self.uiState = .AuthError("Password is empty")
     } else if !validateConfirmPassword(password: password, confirmPassword: confirmPassword) {
       self.showAlert = true
-      self.uiState = .AuthError("Password and confirm password must be matched")
+      self.uiState = .AuthError("Password and confirm password must match")
     } else {
       postRegisterUseCase.execute(email: email, name: name, password: password)
         .subscribe(scope: scopeHandler, onSuccess: { registerDomain in
@@ -44,7 +44,7 @@ class RegisterViewModel : ObservableObject {
   }
 
   private func validateEmail(email:String)-> Bool{
-    if(!email.isEmpty){
+    if(email.emailRegex()){
       return true
     }
     return false
