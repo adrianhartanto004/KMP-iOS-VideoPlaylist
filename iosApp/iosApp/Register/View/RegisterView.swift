@@ -55,7 +55,7 @@ struct RegisterContentView : View {
             .cornerRadius(20.0)
             .shadow(radius: 10.0, x: 20, y: 10)
 
-          if email.isEmpty {
+          if (!email.emailRegex() && email.count > 0) {
             Text("Email is not valid")
               .font(.caption)
               .foregroundColor(.white)
@@ -78,6 +78,13 @@ struct RegisterContentView : View {
             .background(Color.themeTextField)
             .cornerRadius(20.0)
             .shadow(radius: 10.0, x: 20, y: 10)
+
+          if (password != confirmPassword) {
+            Text("Password and confirm password must match")
+              .font(.caption)
+              .foregroundColor(.white)
+          }
+
         }.padding([.leading, .trailing], 27.5)
 
         Button(action: {

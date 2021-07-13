@@ -55,6 +55,12 @@ struct LoginContentView : View {
             .cornerRadius(20.0)
             .shadow(radius: 10.0, x: 20, y: 10)
 
+          if (!email.emailRegex() && email.count > 0) {
+            Text("Email is not valid")
+              .font(.caption)
+              .foregroundColor(.white)
+          }
+
           SecureField("Password", text: self.$password)
             .padding()
             .background(Color.themeTextField)

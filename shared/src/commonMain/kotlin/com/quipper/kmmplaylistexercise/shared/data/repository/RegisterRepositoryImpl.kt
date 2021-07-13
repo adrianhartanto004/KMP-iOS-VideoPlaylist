@@ -3,6 +3,7 @@ package com.quipper.kmmplaylistexercise.shared.data.repository
 import com.quipper.kmmplaylistexercise.shared.data.network.api.ExerciseApi
 import com.quipper.kmmplaylistexercise.shared.domain.model.RegisterDomain
 import com.quipper.kmmplaylistexercise.shared.domain.repository.RegisterRepository
+import io.ktor.http.*
 
 class RegisterRepositoryImpl(
     private val exerciseApi: ExerciseApi
@@ -13,6 +14,6 @@ class RegisterRepositoryImpl(
         password: String
     ): RegisterDomain {
         val response = exerciseApi.postRegister(email, name, password)
-        return RegisterDomain(response.value in 200..299)
+        return RegisterDomain(response.isSuccess())
     }
 }

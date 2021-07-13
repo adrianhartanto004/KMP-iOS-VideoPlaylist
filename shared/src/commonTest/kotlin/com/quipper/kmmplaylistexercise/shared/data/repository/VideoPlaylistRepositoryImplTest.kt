@@ -7,7 +7,6 @@ import com.quipper.kmmplaylistexercise.shared.domain.repository.VideoPlaylistRep
 import com.quipper.kmmplaylistexercise.shared.persistence.AppDatabase
 import com.quipper.kmmplaylistexercise.shared.persistence.VideoQueries
 import com.quipper.kmmplaylistexercise.shared.testDbConnection
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlin.test.*
 
 class VideoPlaylistRepositoryImplTest : BaseTest() {
@@ -16,27 +15,16 @@ class VideoPlaylistRepositoryImplTest : BaseTest() {
 
     private var exerciseApiMock = ExerciseApiMock()
 
-//    companion object {
-//        val videoDomainMockData = listOf(
-//            VideoDomain(1, "desc", "videoUrl", "author", "thumbnailUrl", "title"),
-//            VideoDomain(2, "desc", "videoUrl", "author", "thumbnailUrl", "title"),
-//            VideoDomain(3, "desc", "videoUrl", "author", "thumbnailUrl", "title")
-//        )
-//    }
-
     @BeforeTest
     fun setup() {
-//        exerciseApiMock = ExerciseApiMock()
         val db = AppDatabase(testDbConnection())
         videoQueries = db.videoQueries
-//        videoQueries.clearAll()
         sut = VideoPlaylistRepositoryImpl(
             exerciseApiMock,
             videoQueries
         )
     }
 
-    @DelicateCoroutinesApi
     @Test
     fun `fetch data should return data if success`() {
         runTest {
