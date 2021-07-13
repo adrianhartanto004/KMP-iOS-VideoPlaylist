@@ -7,7 +7,6 @@ import com.quipper.kmmplaylistexercise.shared.domain.repository.VideoPlaylistRep
 import com.quipper.kmmplaylistexercise.shared.persistence.AppDatabase
 import com.quipper.kmmplaylistexercise.shared.persistence.VideoQueries
 import com.quipper.kmmplaylistexercise.shared.testDbConnection
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlin.test.*
 
 class VideoPlaylistRepositoryImplTest : BaseTest() {
@@ -36,7 +35,6 @@ class VideoPlaylistRepositoryImplTest : BaseTest() {
         )
     }
 
-    @DelicateCoroutinesApi
     @Test
     fun `fetch data should return data if success`() {
         runTest {
@@ -50,6 +48,18 @@ class VideoPlaylistRepositoryImplTest : BaseTest() {
             assertTrue {
                 apiMockResult[0].id == videoDb[0].id.toInt()
             }
+        }
+    }
+
+    @Test
+    fun `fetch data should return data if netwok error`() {
+        runTest {
+            exerciseApiMock.isEmptyRequest = false
+            exerciseApiMock.getVideos()
+            val result = sut.getVideos()
+            val videoDb = videoQueries.getAll().executeAsList()
+
+            assertEquals(result[0].desc, videoDb[0].toDomainModel().desc)
         }
     }
 

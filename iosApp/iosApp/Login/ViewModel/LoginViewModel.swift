@@ -17,17 +17,22 @@ class LoginViewModel : ObservableObject {
   func postLogin(email: String, password: String) {
     self.showAlert = false
     self.uiState = .Loading
-    postLoginUseCase.execute(email: email, password: password)
-      .subscribe(scope: scopeHandler, onSuccess: { loginDomain in
-        if loginDomain?.token.isEmpty ?? true {
-          self.showAlert = true
-          self.uiState = .AuthError(loginDomain?.error ?? "Username or Password is wrong")
-        } else {
-          self.uiState = .Success
-        }
-      }, onError: { KotlinThrowable in
-        self.uiState = .Error
-      })
+    if !email.emailRegex() {
+      self.showAlert = true
+      self.uiState = .AuthError("Email is not valid")
+    } else {
+      postLoginUseCase.execute(email: email, password: password)
+        .subscribe(scope: scopeHandler, onSuccess: { loginDomain in
+          if loginDomain?.token.isEmpty ?? true {
+            self.showAlert = true
+            self.uiState = .AuthError(loginDomain?.error ?? "Username or Password is wrong")
+          } else {
+            self.uiState = .Success
+          }
+        }, onError: { KotlinThrowable in
+          self.uiState = .Error
+        })
+    }
   }
 
 }
