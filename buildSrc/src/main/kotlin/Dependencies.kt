@@ -6,7 +6,7 @@ sealed class Dependencies {
     object Versions {
         const val sqlDelight = "1.5.0"
         const val robolectric = "4.4"
-        const val kotlin = "1.5.0"
+        const val kotlin = "1.5.20"
         const val ktor = "1.6.0"
 //        const val mokoResources = "0.15.1"
         const val koin = "3.0.1"
