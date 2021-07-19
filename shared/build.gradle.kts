@@ -2,12 +2,13 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     kotlin("multiplatform")
-    kotlin("plugin.serialization") version "1.5.0"
+    kotlin("plugin.serialization") version "1.5.20"
     kotlin("native.cocoapods")
     id("com.android.library")
     id("com.squareup.sqldelight")
 //    id(Dependencies.Plugins.mokoResources)
     id(Dependencies.Plugins.buildKonfig)
+    id("com.rickclephas.kmp.nativecoroutines") version "0.4.1"
 }
 
 buildkonfig {
