@@ -1,15 +1,21 @@
 PODS:
+  - KMPNativeCoroutinesCombine (0.4.1):
+    - KMPNativeCoroutinesCore
+  - KMPNativeCoroutinesCore (0.4.1)
   - shared (1.0)
   - sqlite3 (3.36.0):
     - sqlite3/common (= 3.36.0)
   - sqlite3/common (3.36.0)
 
 DEPENDENCIES:
+  - KMPNativeCoroutinesCombine
   - shared (from `../shared`)
   - sqlite3
 
 SPEC REPOS:
   trunk:
+    - KMPNativeCoroutinesCombine
+    - KMPNativeCoroutinesCore
     - sqlite3
 
 EXTERNAL SOURCES:
@@ -17,9 +23,11 @@ EXTERNAL SOURCES:
     :path: "../shared"
 
 SPEC CHECKSUMS:
+  KMPNativeCoroutinesCombine: 1b8cf07b15f0b1407184be609dbbaeb009e28a92
+  KMPNativeCoroutinesCore: e5dedb37a039cad98cea2c6069e8a0c0b7793b13
   shared: 0ea892c3dbcfa8d680b01d8d33c3dd9612cd8245
   sqlite3: 797b1b1f92baf74716a3179f69d9652ce4a5df3f
 
-PODFILE CHECKSUM: d270b06c48c41ddadcc29842c3a4e00b34caa75e
+PODFILE CHECKSUM: 8b0485c0eefa31b5763e5016482d45fa1fb1a4c3
 
 COCOAPODS: 1.10.1
