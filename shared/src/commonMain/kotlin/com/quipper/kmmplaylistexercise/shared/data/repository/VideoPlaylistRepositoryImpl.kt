@@ -8,6 +8,7 @@ import com.quipper.kmmplaylistexercise.shared.domain.repository.VideoPlaylistRep
 import com.quipper.kmmplaylistexercise.shared.persistence.VideoQueries
 import io.ktor.utils.io.errors.*
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 
 class VideoPlaylistRepositoryImpl(
@@ -16,20 +17,18 @@ class VideoPlaylistRepositoryImpl(
 ) : VideoPlaylistRepository {
     override fun getVideos(): Flow<List<VideoDomain>> {
         return flow {
-            try {
-                val videos = exerciseApi.getVideos().videos
-                videos
-                    .map { it.toDatabaseEntity() }
-                    .let { videoItem ->
-                        videoItem.forEach {
-                            videoQueries.insertOrReplaceVideo(it)
-                        }
+            val videos = exerciseApi.getVideos().videos
+            videos
+                .map { it.toDatabaseEntity() }
+                .let { videoItem ->
+                    videoItem.forEach {
+                        videoQueries.insertOrReplaceVideo(it)
                     }
-                emit(videos.map { it.toDomainModel() })
-            } catch (throwable: Throwable) {
-                if (throwable is IOException) {
-                    emit(videoQueries.getAll().executeAsList().map { it.toDomainModel() })
                 }
+            emit(videos.map { it.toDomainModel() })
+        }.catch { exception ->
+            if (exception is IOException) {
+                emit(videoQueries.getAll().executeAsList().map { it.toDomainModel() })
             }
         }
     }

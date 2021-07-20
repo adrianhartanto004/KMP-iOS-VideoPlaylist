@@ -10,7 +10,7 @@ class DetailViewModel: ObservableObject {
   @Published var listMoreVideo: [VideoDomain]
 
   @Published var video: VideoDomain
-  @Published var status: StatusPlaylist = .Loading
+  @Published var viewState: PlaylistViewState = PlaylistViewState.idle()
   @Published var avPlayer: AVPlayer = AVPlayer()
 
   private var cancellable: AnyCancellable? = nil
@@ -27,7 +27,7 @@ class DetailViewModel: ObservableObject {
       .sink { completion in
 
       } receiveValue: { videoDomain in
-        self.status = .Success(videoDomain)
+//        self.status = .Success(videoDomain)
       }
   }
 

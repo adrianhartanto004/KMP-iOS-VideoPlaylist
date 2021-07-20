@@ -6,9 +6,9 @@ struct PlaylistView: View {
   let onLogout: ()->Void
 
   init(getVideoListUseCase: GetVideoListIos, onLogout: @escaping ()->Void) {
-    viewModel = PlaylistViewModel(getVideoListUseCase: getVideoListUseCase)
     self.onLogout = onLogout
-    viewModel.getPlaylist()
+    viewModel = PlaylistViewModel(getVideoListUseCase: getVideoListUseCase)
+    viewModel.emits(.GetPlaylistIntent)
   }
 
   var body: some View {
@@ -18,14 +18,14 @@ struct PlaylistView: View {
   }
 
   private func playlist() -> AnyView {
-    switch viewModel.status {
-    case .Loading :
+    switch viewModel.viewState {
+    case .idle() :
       return AnyView(Text("loading").multilineTextAlignment(.center))
-    case .Success(let videos) :
+    default:
       return AnyView(
-        ForEach(videos, id:\.self) { video in
+        ForEach(viewModel.viewState.videosDomain, id:\.self) { video in
           NavigationLink (
-            destination: DetailView(video: video, listMoreVideo: videos, getVideoListUseCase: .init())
+            destination: DetailView(video: video, listMoreVideo: viewModel.viewState.videosDomain, getVideoListUseCase: .init())
           ) {
             CardPlaylist(video: video)
           }
@@ -34,8 +34,6 @@ struct PlaylistView: View {
         .navigationBarTitle("Playlist")
         .navigationBarItems(trailing: Button("Logout", action: onLogout))
       )
-    case .Error :
-      return AnyView(Text("error").multilineTextAlignment(.center))
     }
   }
 }
