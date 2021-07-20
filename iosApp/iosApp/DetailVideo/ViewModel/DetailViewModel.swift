@@ -1,18 +1,11 @@
-//
-//  DetailViewModel.swift
-//  iosApp
-//
-//  Created by Pras Adi on 07/07/21.
-//  Copyright © 2021 orgName. All rights reserved.
-//
-
 import AVKit
 import Foundation
 import shared
+import Combine
+import KMPNativeCoroutinesCombine
 
 class DetailViewModel: ObservableObject {
   let getVideoListUseCase: GetVideoListIos
-  let scopeHandler = ScopeProvider().getScopeForIos()
 
   @Published var listMoreVideo: [VideoDomain]
 
@@ -20,6 +13,7 @@ class DetailViewModel: ObservableObject {
   @Published var status: StatusPlaylist = .Loading
   @Published var avPlayer: AVPlayer = AVPlayer()
 
+  private var cancellable: AnyCancellable? = nil
 
   init(getVideoListUseCase: GetVideoListIos, video: VideoDomain, listMoreVideo: [VideoDomain]) {
     self.getVideoListUseCase = getVideoListUseCase
@@ -28,15 +22,13 @@ class DetailViewModel: ObservableObject {
   }
 
   func getMoreVideos() {
-    getVideoListUseCase.execute().subscribe(
-      scope: scopeHandler,
-      onSuccess: { videoDomain in
-        self.status = .Success(videoDomain as! [VideoDomain])
-      },
-      onError: { KotlinThrowable in
-        self.status = .Error
+    cancellable = createPublisher(for: getVideoListUseCase.execute())
+      .receive(on: DispatchQueue.main)
+      .sink { completion in
+
+      } receiveValue: { videoDomain in
+        self.status = .Success(videoDomain)
       }
-    )
   }
 
   func changeVideo(video: VideoDomain) {
